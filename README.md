@@ -1,6 +1,6 @@
 # **Embedded Thermal-Based Human Presence Detection**
 
-Author Name, [GitHub Repository](https://github.com/yourusername/thermal-presence), [Edge Impulse Project](https://studio.edgeimpulse.com/studio/679618)
+Author Name, [GitHub Repository](https://github.com/xjtluk/Embedded-Thermal-Based-Human-Presence-DetectionPresence-Detection.git), [Edge Impulse Project](https://studio.edgeimpulse.com/studio/679618)
 
 ## **Introduction**
 This project implements a **real-time human-presence detector** using an Arduino Nano 33 BLE Sense paired with a 32×24 MLX90640 thermal imager. It continuously samples thermal frames at 4 Hz, processes them as time-series data, and runs inference with a TinyML classifier to trigger LED and buzzer alerts when a person is detected. This approach leverages thermal sensing—unaffected by lighting conditions or privacy concerns—with on-device ML to create a privacy‐preserving presence detector.
@@ -12,7 +12,7 @@ The MLX90640 was chosen for its balance of resolution (32×24 pixels) and afford
 <img src="documents/3.jpg" alt="Project Hardware" width="300"/>
 
 ## **Research Question**
-**Can a Nano 33 BLE Sense running a TinyML time-series classifier on MLX90640 thermal data reliably detect human presence in real time on-device with minimal false positives in varied environmental conditions?**
+**Can a Nano 33 BLE Sense running a TinyML classifier on MLX90640 thermal data detect human presence reliably in real time ?**
 
 Success metrics:
 - Accuracy target: >80% on validation data
@@ -32,6 +32,7 @@ The system architecture consists of three integrated components:
 <img src="documents/1.png" alt="System Architecture" width="850"/>
 
 **Project Workflow**
+
 The implementation followed these key steps:
 
 1. **Hardware Integration**
@@ -64,7 +65,7 @@ The implementation followed these key steps:
    - Implemented temporal filtering mechanism
    - Conducted field testing across different environments
 
-<img src="documents/2.png" alt="System Architecture" width="850"/>
+<img src="documents/2.png" alt="System Architecture" width="450"/>
 
 ## **Data**
 The dataset consists of thermal frames captured across diverse scenarios:
