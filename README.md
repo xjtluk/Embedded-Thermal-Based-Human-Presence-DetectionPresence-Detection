@@ -1,6 +1,6 @@
 # **Embedded Thermal-Based Human Presence Detection**
 
-Author Name, [GitHub Repository](https://github.com/xjtluk/Embedded-Thermal-Based-Human-Presence-DetectionPresence-Detection.git), [Edge Impulse Project](https://studio.edgeimpulse.com/studio/679618)
+KE BAI, [GitHub Repository](https://github.com/xjtluk/Embedded-Thermal-Based-Human-Presence-DetectionPresence-Detection.git), [Edge Impulse Project](https://studio.edgeimpulse.com/studio/679618)
 
 ## **Introduction**
 This project implements a **real-time human presence detector** using an Arduino Nano 33 BLE Sense paired with a 32×24 MLX90640 thermal imager. The system continuously samples thermal frames at 4 Hz, processes them through a TinyML classifier, and triggers LED and buzzer alerts when a person is detected.
@@ -23,9 +23,11 @@ The system architecture integrates three main components to create an efficient 
 
 3. **On-Device Inference & Actuation**: The firmware constructs a `signal_t` structure from each frame, passes it through the model, and implements a majority vote over 1 second (4 frames) to reduce false positives. Detection triggers both LED and buzzer feedback.
 
+<img src="documents/1.png" alt="System Architecture" width="600"/>  
+
 The implementation workflow encompassed hardware integration, custom data collection scripts, visualization tools for data validation, model development with regularization techniques, and quantization for efficient deployment—all optimized for the constrained resources of the Nano 33 BLE Sense.
 
-<img src="documents/1.png" alt="System Architecture" width="600"/>
+<img src="documents/2.png" alt="Model Architecture" width="450"/>
 
 ## **Data**
 The dataset consists of thermal frames captured systematically across diverse scenarios:
@@ -80,7 +82,7 @@ This architecture was chosen after testing larger networks (128→64 and 64→32
 
 The Edge Impulse pipeline treats each thermal frame as a 768-value time series, applying standard normalization before classification. This approach preserves the spatial relationships within the 32×24 grid while enabling efficient processing on the microcontroller.
 
-<img src="documents/2.png" alt="Model Architecture" width="450"/>
+<img src="documents/4.png" alt="Model Architecture" width="600"/>
 
 ## **Experiments**
 To tune for real-time accuracy and resource efficiency, I ran four sets of experiments, measuring accuracy, latency and power via Edge Impulse's on-device estimator, Arduino serial-timing scripts and a USB power monitor.
