@@ -34,7 +34,7 @@ The dataset consists of thermal frames captured across diverse scenarios that re
 - Systematic thermal sampling in multiple environments (home, office, laboratory)
 - Varied subject positions: standing (near/far), sitting, walking, partial occlusions
 - Empty room captures with different ambient temperatures (morning/afternoon/evening)
-- Total dataset: ~500 frames per class, balanced between "person" and "empty" categories
+- Total dataset: ~250 frames per class, balanced between "person" and "empty" categories
 
 **Processing Methodology**:
 - Custom Python scripts (`collect.py`) streamline serial capture and CSV formatting
@@ -51,17 +51,15 @@ The dataset consists of thermal frames captured across diverse scenarios that re
 
 Quality assurance included manual inspection of randomly sampled frames to verify correct labeling and sensor calibration. The CSV Wizard configuration (250 ms sampling interval, no timestamps) ensures each row represents a complete thermal snapshot, preserving spatial relationships within the 32×24 thermal grid.
 
-For example, in the following folder are samples that were partially converted to thermography, where **yes** is for imaged data and **no** is for none.
-  ```
-  image/
-    yes/
-    no/
-  ```
+For example, in the `image` folder are samples that were partially converted to thermography, where **yes** is for imaged data and **no** is for none. Here are some good data samples.
+
 **Yes**
 
 <img src="image/yes/person%20(100).png" alt="Image Description" width="300"/> <img src="image/yes/person%20(104).png" alt="Image Description" width="300"/> <img src="image/yes/person%20(185).png" alt="Image Description" width="300"/>
 
 **No**
+
+<img src="image/no/empty%20(105).png" alt="Image Description" width="300"/> <img src="image/no/empty%20(134).png" alt="Image Description" width="300"/> <img src="image/no/empty%20(152).png" alt="Image Description" width="300"/>
 
 ## **Model**
 Based on systematic experimentation, I selected a **lightweight feedforward neural network** architecture optimized for the Nano 33 BLE Sense's constrained resources. The model implementation consists of:
