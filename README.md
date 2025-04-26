@@ -51,7 +51,7 @@ The dataset consists of thermal frames captured across diverse scenarios that re
 
 Quality assurance included manual inspection of randomly sampled frames to verify correct labeling and sensor calibration. The CSV Wizard configuration (250 ms sampling interval, no timestamps) ensures each row represents a complete thermal snapshot, preserving spatial relationships within the 32×24 thermal grid.
 
-![Example thermal image visualizations showing person vs. empty scenario](https://i.imgur.com/placeholder.png)
+<img src="image/yes/person%20(100).png" alt="Image Description" width="300"/> <img src="image/yes/person%20(104).png" alt="Image Description" width="300"/>
 
 ## **Model**
 Based on systematic experimentation, I selected a **lightweight feedforward neural network** architecture optimized for the Nano 33 BLE Sense's constrained resources. The model implementation consists of:
