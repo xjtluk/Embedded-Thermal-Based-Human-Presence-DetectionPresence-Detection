@@ -152,13 +152,14 @@ The project successfully demonstrates that privacy-preserving human presence det
 - **Resource Usage**: 15.4KB flash, 1.4KB RAM (well within Nano 33 constraints)
 - **Detection Range:** Reliable detection up to 5 meters in controlled environments  
 - **Temporal Stability:** Majority voting window eliminated most transient false positives
-  
+<img src="documents/6.png" alt="Model Architecture" width="450"/>  
 Another strategy was to treat each 250 ms frame as a 32×24 heat-map image and train an **Image Classification** Impulse in Edge Impulse.  By converting the raw CSV temperature arrays into PNG-style inputs, we guarantee that the live inference on the Nano 33 BLE Sense sees exactly the same 2D spatial format it was trained on.  The final quantized model delivered:
 
 - **Classification Accuracy:** 87.1 % on the validation set
 - **Processing Efficiency**: 641 ms per frame
 - **Resource Usage**: 71.2 kB flash, 182.7KB RAM 
- 
+<img src="documents/5.png" alt="Model Architecture" width="450"/> 
+
 This image-based approach trades off a higher per-inference latency (641 ms) for perfect input consistency, and still fits within the Nano 33 BLE Sense’s memory (256 kB RAM, 1 MB Flash). However, it also has higher accuracy.
 
 **Critical Observations**:
