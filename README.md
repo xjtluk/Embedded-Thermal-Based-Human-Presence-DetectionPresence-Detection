@@ -9,7 +9,9 @@ The inspiration came from low-resolution thermal person-detection research with 
 
 The MLX90640 was specifically chosen for its balance of resolution (32×24 pixels) and affordability, providing sufficient thermal detail while keeping costs reasonable. This sensor, along with the Nano 33 BLE Sense's powerful Cortex-M4F processor, creates an ideal platform for edge AI applications where power consumption and form factor are critical considerations.
 
-![Block diagram of the system](https://i.imgur.com/qMZ5kUS.png)
+<img src="documents/3.jpg" alt="Image Description" width="300"/>)
+
+The hardware enclosure was designed for portability with accessible controls, housing all components in a compact form factor that protects the sensitive thermal sensor while allowing it an unobstructed field of view.
 
 ## **Research Question**
 **Can a Nano 33 BLE Sense running a TinyML time-series classifier on MLX90640 thermal data reliably detect human presence in real time on-device with minimal false positives in varied environmental conditions?**
@@ -23,7 +25,7 @@ The system architecture consists of three integrated functional blocks:
 
 3. **On-Device Inference & Actuation**: The Arduino firmware constructs a `signal_t` from each incoming thermal frame, passes it through the quantized model using `run_classifier()`, and implements a temporal filtering mechanism via a 1-second majority vote (4 frames). This voting mechanism significantly reduces transient false positives. The detection outcome drives both visual feedback (onboard LED) and audio alerts (4kHz buzzer tone), creating a multi-modal notification system.
 
-The hardware enclosure was designed for portability with accessible controls, housing all components in a compact form factor that protects the sensitive thermal sensor while allowing it an unobstructed field of view.
+<img src="documents/1.png" alt="Image Description" width="850"/>
 
 ## **Data**
 The dataset consists of thermal frames captured across diverse scenarios that reflect real-world detection challenges:
