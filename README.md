@@ -4,7 +4,7 @@ Author: KE BAI
 
 [GitHub Repository](https://github.com/xjtluk/Embedded-Thermal-Based-Human-Presence-DetectionPresence-Detection.git)
 
-[Edge Impulse Project](https://studio.edgeimpulse.com/studio/679618)
+[Edge Impulse Project](https://studio.edgeimpulse.com/studio/678930)
 
 ## **Introduction**
 This project implements a **real-time human presence detector** using an Arduino Nano 33 BLE Sense paired with a 32×24 MLX90640 thermal imager. The system continuously samples thermal frames at 4 Hz, processes them through a TinyML classifier, and triggers LED and buzzer alerts when a person is detected.
@@ -150,8 +150,16 @@ The project successfully demonstrates that privacy-preserving human presence det
 - **Classification Accuracy**: 83.2% on validation data
 - **Processing Efficiency**: 1ms inference time per frame (250x faster than acquisition rate)
 - **Resource Usage**: 15.4KB flash, 1.4KB RAM (well within Nano 33 constraints)
-- **Detection Range**: Reliable detection up to 5 meters in controlled environments
-- **Temporal Stability**: Majority voting window eliminated most transient false positives
+- **Detection Range:** Reliable detection up to 5 meters in controlled environments  
+- **Temporal Stability:** Majority voting window eliminated most transient false positives
+  
+Another strategy was to treat each 250 ms frame as a 32×24 heat-map image and train an **Image Classification** Impulse in Edge Impulse.  By converting the raw CSV temperature arrays into PNG-style inputs, we guarantee that the live inference on the Nano 33 BLE Sense sees exactly the same 2D spatial format it was trained on.  The final quantized model delivered:
+
+- **Classification Accuracy:** 87.1 % on the validation set
+- **Processing Efficiency**: 641 ms per frame
+- **Resource Usage**: 71.2 kB flash, 182.7KB RAM 
+ 
+This image-based approach trades off a higher per-inference latency (641 ms) for perfect input consistency, and still fits within the Nano 33 BLE Sense’s memory (256 kB RAM, 1 MB Flash). However, it also has higher accuracy.
 
 **Critical Observations**:
 1. **Resolution vs. Performance**: The 32×24 thermal grid represents a practical minimum resolution for reliable human detection. Testing with lower resolution sensors (8×8) resulted in unacceptable accuracy (<60%).
