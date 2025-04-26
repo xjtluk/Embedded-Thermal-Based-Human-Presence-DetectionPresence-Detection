@@ -1,6 +1,10 @@
 # **Embedded Thermal-Based Human Presence Detection**
 
-KE BAI, [GitHub Repository](https://github.com/xjtluk/Embedded-Thermal-Based-Human-Presence-DetectionPresence-Detection.git), [Edge Impulse Project](https://studio.edgeimpulse.com/studio/679618)
+Author: KE BAI
+
+[GitHub Repository](https://github.com/xjtluk/Embedded-Thermal-Based-Human-Presence-DetectionPresence-Detection.git)
+
+[Edge Impulse Project](https://studio.edgeimpulse.com/studio/679618)
 
 ## **Introduction**
 This project implements a **real-time human presence detector** using an Arduino Nano 33 BLE Sense paired with a 32×24 MLX90640 thermal imager. The system continuously samples thermal frames at 4 Hz, processes them through a TinyML classifier, and triggers LED and buzzer alerts when a person is detected.
@@ -11,8 +15,10 @@ This work builds upon Vandersteegen et al.'s research on ultra-low resolution th
 
 <img src="documents/3.jpg" alt="Project Hardware" width="300"/>
 
+-In terms of shell design, I choose to use Lazy Cut to pack Nano 33 BLE Sense, MLX90640 and related accessories neatly into a small paper box, which is convenient to carry and keeps the overall structure compact and simple.
+
 ## **Research Question**
-**Can a Nano 33 BLE Sense running a TinyML classifier on MLX90640 thermal data detect human presence reliably in real time?**
+**Can a Nano 33 BLE Sense running a TinyML classifier on MLX90640 thermal data detect human presence reliably in real time ?**
 
 ## **Application Overview**
 The system architecture integrates three main components to create an efficient presence detection pipeline:
@@ -174,8 +180,8 @@ Overall, this project demonstrates the viability of privacy-preserving thermal d
 7. International Journal of Engineering Trends and Technology. (2023). Study and Analysis of Thermal Imaging Sensors for Object Detection. *IJETT*, 10(5), 104-112.
 
 ## **Declaration of Authorship**
-I, [YOUR NAME], confirm that the work presented in this assessment is my own. Where information has been derived from other sources, I confirm that this has been indicated in the work.
+I, KE BAI, confirm that the work presented in this assessment is my own. Where information has been derived from other sources, I confirm that this has been indicated in the work.
 
 ASSESSMENT DATE: April 26, 2025
 
-Word count: 1499
+Word count: 1446
