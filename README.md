@@ -91,17 +91,19 @@ The Edge Impulse pipeline treats each thermal frame as a 768-value time series, 
 <img src="documents/4.png" alt="Model Architecture" width="600"/>
 
 ## **Experiments**
-To tune for real-time accuracy and resource efficiency, I ran four sets of experiments, measuring accuracy, latency and power via Edge Impulse's on-device estimator, Arduino serial-timing scripts and a USB power monitor.
+To tune for real-time accuracy and resource efficiency, I developed a suite of custom testing scripts to systematically evaluate different aspects of the system. These experiments measured accuracy, latency, and power via Edge Impulse's on-device estimator, Arduino serial-timing scripts, and a USB power monitor.
 
 1. **Sampling Frequency**  
+   - **Testing Framework**: Using `sampling-frequency-test.py`, I systematically compared different sensor refresh rates.
    - **Tested rates:** 2 Hz, 4 Hz, 8 Hz (via `mlx.setRefreshRate()`)  
-   - **Metrics:** inference time per frame, end-to-end latency (frame read → LED update), and current draw  
+   - **Metrics:** The script measured inference time per frame, end-to-end latency (frame read → LED update), and current draw  
    - **Result:** 4 Hz gave sub-10 ms inference, ~30 mA draw, and matched our 250 ms voting window without wasted cycles.
 
 2. **Window Size & Stride**  
+   - **Testing Framework**: `window-evaluation.py` was used to evaluate different configurations.
    - **Options:** 1 frame (250 ms), 2 frames (500 ms), 3 frames (750 ms)  
    - **Stride:** equal to window (no overlap) or half-overlap (50%)  
-   - **Evaluation:** used Edge Impulse Model Testing + a Python script to compute accuracy, false-positive rate (FPR) and false-negative rate (FNR) on a held-out test set  
+   - **Evaluation:** The script processed results against a held-out test set to compute accuracy, false-positive rate (FPR) and false-negative rate (FNR)
 
    | Window | Stride | Acc (%) | FPR (%) | FNR (%) | Throughput |
    |:------:|:------:|:-------:|:-------:|:-------:|:-----------|
@@ -112,9 +114,10 @@ To tune for real-time accuracy and resource efficiency, I ran four sets of exper
    **Conclusion:** a 250 ms window with no overlap maintained accuracy while maximizing reaction speed.
 
 3. **Voting Window Length**  
+   - **Testing Framework**: `voting-window-analysis.py` was developed to replay serial logs and evaluate different voting strategies.
    - **Tested N frames:** 2, 4, 6, 8  
    - **Majority thresholds:** >50% vs. ≥75% positive votes  
-   - **Tool:** custom Python script replayed serial logs to compute system-level FPR/FNR  
+   - **Tool:** The script computed system-level FPR/FNR across different configurations  
    - **Result:** a 4-frame window (1 s) with >50% threshold cut transient false positives by 40% while adding only 250 ms latency.
 
 4. **Neural Network Architecture Comparison**:
@@ -131,6 +134,9 @@ To tune for real-time accuracy and resource efficiency, I ran four sets of exper
    - **Result:** int8 quantization shrank the model from ~60 kB to ~15 kB flash with just 0.8% accuracy loss and identical sub-10 ms latency.
 
 6. **Distance Performance Testing**:
+   - **Testing Framework**: Using `distance-performance-test.py`, I systematically evaluated detection reliability at increasing distances.
+   - **Methodology**: The script automates collection of detection rates and confidence scores at predefined distances.
+   - **Visualization**: Results are automatically plotted to visualize the performance degradation curve.
    
    | Distance (m) | Detection Rate | Confidence Score |
    |--------------|----------------|------------------|
