@@ -6,6 +6,8 @@ Author: KE BAI
 
 [Edge Impulse Project](https://studio.edgeimpulse.com/studio/678930)
 
+[Vedio](https://youtu.be/sFpo2nwuBb0)
+
 ## **Introduction**
 This project implements a **real-time human presence detector** using an Arduino Nano 33 BLE Sense paired with a 32×24 MLX90640 thermal imager. The system continuously samples thermal frames at 4 Hz, processes them through a TinyML classifier, and triggers LED and buzzer alerts when a person is detected.
 
