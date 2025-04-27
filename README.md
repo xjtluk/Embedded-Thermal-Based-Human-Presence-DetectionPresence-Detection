@@ -159,14 +159,15 @@ The project successfully demonstrates that privacy-preserving human presence det
 - **Detection Range:** Reliable detection up to 5 meters in controlled environments  
 - **Temporal Stability:** Majority voting window eliminated most transient false positives
 <img src="documents/6.png" alt="Model Architecture" width="450"/>  
-Another strategy was to treat each 250 ms frame as a 32×24 heat-map image and train an **Image Classification** Impulse in Edge Impulse.  By converting the raw CSV temperature arrays into PNG-style inputs, we guarantee that the live inference on the Nano 33 BLE Sense sees exactly the same 2D spatial format it was trained on.  The final quantized model delivered:
+
+In addition, I also experimented with another approach: treating each 250 ms frame as a 32×24 heat-map image and training an Image Classification model in Edge Impulse. By converting the raw CSV temperature arrays into PNG-style inputs, I ensured that the Nano 33 BLE Sense would see exactly the same 2D spatial format during live inference as during training. 
 
 - **Classification Accuracy:** 87.1 % on the validation set
 - **Processing Efficiency**: 641 ms per frame
 - **Resource Usage**: 71.2 kB flash, 182.7KB RAM 
 <img src="documents/5.png" alt="Model Architecture" width="450"/> 
 
-This image-based approach trades off a higher per-inference latency (641 ms) for perfect input consistency, and still fits within the Nano 33 BLE Sense’s memory (256 kB RAM, 1 MB Flash). However, it also has higher accuracy.
+Although this image-based method led to a slight improvement in accuracy, it significantly increased inference latency (641 ms) and resource usage, even though it still fit within the Nano 33 BLE Sense’s 256 kB RAM and 1 MB Flash limits. Therefore, I prefer the former approach, which is more in line with our theme of "lightweight" and "convenient".
 
 **Critical Observations**:
 1. **Resolution vs. Performance**: The 32×24 thermal grid represents a practical minimum resolution for reliable human detection. Testing with lower resolution sensors (8×8) resulted in unacceptable accuracy (<60%).
@@ -183,7 +184,7 @@ If given more development time, I would implement:
 3. **Transfer Learning**: Pre-training on larger thermal datasets before fine-tuning
 4. **Motion Integration**: Combining thermal signatures with motion detection from the Nano's IMU
 
-Overall, this project demonstrates the viability of privacy-preserving thermal detection for IoT applications, smart buildings, and security systems where conventional camera systems raise privacy concerns or fail in low-light conditions.
+Overall, this project demonstrates the viability of privacy-preserving thermal detection for IoT applications, smart buildings, and security systems where conventional camera systems raise privacy concerns or fail in low-light conditions. 
 
 ## **Bibliography**
 1. Vandersteegen, M. et al. (2022). Person Detection Using an Ultra Low-resolution Thermal Imager. *KULeuven.* https://lirias.kuleuven.be/retrieve/690039
@@ -197,6 +198,6 @@ Overall, this project demonstrates the viability of privacy-preserving thermal d
 ## **Declaration of Authorship**
 I, KE BAI, confirm that the work presented in this assessment is my own. Where information has been derived from other sources, I confirm that this has been indicated in the work.
 
-ASSESSMENT DATE: April 26, 2025
+ASSESSMENT DATE: April 27, 2025
 
 Word count: 1446
